@@ -1,0 +1,12 @@
+{
+  "name": "aroundu-backend",
+  "version": "1.0.0",
+  "description": "Backend file of AroundU Application.",
+  "license": "ISC",
+  "author": "",
+  "type": "module",
+  "main": "main.js",
+  "scripts": {
+    "dev": "main.js"
+  }
+}
