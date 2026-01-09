@@ -7,6 +7,9 @@
   "type": "module",
   "main": "main.js",
   "scripts": {
-    "dev": "main.js"
+    "dev": "nodemon src/main.js"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.11"
   }
 }
