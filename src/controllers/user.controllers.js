@@ -182,6 +182,32 @@ const getMyProfile = asyncHandler(async (req, res) => {
   return res.status(200).json(new ApiResponse(200, user, "Profile fetched"));
 });
 
+// updating text data 
+const updateAccountDetails = asyncHandler(async (req, res) => {
+    // here the developers allow what data must be given access to the user to modify. Here i am allowing "fullName, email"
+    // taking this data from frontend
+    const { fullName, email } = req.body
+    if (!fullName || !email) {
+        throw new ApiError(400, "All fields are required")
+    }
+
+    const user = await User.findByIdAndUpdate(
+        req.user?._id,
+        {
+            $set:
+            {   // here left side "fullName:" is whats their in Db and right side "fullName" is what we will provide from frontend and same for email.
+                fullName: fullName,
+                email: email
+            }
+        },
+        { new: true }
+    ).select("-password")
+
+    return res
+        .status(200)
+        .json(new ApiResponse(200, user, "Account details updated sucessfully"))
+})
+
 // 4️⃣ updateLocation
 const updateLocation = asyncHandler(async (req, res) => {
   const { latitude, longitude } = req.body || {};
@@ -383,7 +409,17 @@ const updateUserAvatar = asyncHandler(async (req, res) => {
         )
 })
 
-export { registerUser, loginUser, getMyProfile, updateLocation };
+export { registerUser, 
+    loginUser, 
+    logoutUser, 
+    getMyProfile, 
+    updateAccountDetails, 
+    updateLocation, 
+    refreshAccessToken, 
+    changeCurrentPassword, 
+    forgotPassword, 
+    updateUserAvatar 
+};
 
 
 

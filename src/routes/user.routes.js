@@ -18,8 +18,9 @@ router.route("/forgot-password").post(forgotPassword)
 router.route("/logout").post(verifyJWT, logoutUser)
 router.route("/refresh-token").post(refreshAccessToken)
 router.route("/update-user-password").post(verifyJWT, changeCurrentPassword)
-router.route("/fetch-current-user-details").get(verifyJWT, getCurrentUser)
+router.route("/fetch-current-user-details").get(verifyJWT, getMyProfile)
 router.route("/update-account-details").patch(verifyJWT, updateAccountDetails)
+router.route("/update-location").patch(verifyJWT, updateLocation)
 router.route("/update-avatar").patch(verifyJWT, upload.single("avatar"), updateUserAvatar)
 
 export default router 
